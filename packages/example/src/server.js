@@ -1,5 +1,5 @@
 import http from 'http';
-import { makeApp } from 'core/express';
+import { makeApp } from 're-ssr/express';
 import compression from 'compression';
 import chalk from 'chalk';
 // eslint-disable-next-line import/extensions

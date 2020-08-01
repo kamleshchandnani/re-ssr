@@ -55,6 +55,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: ['raw-loader'],
+      },
     ],
   },
   optimization: {
@@ -82,9 +86,9 @@ module.exports = {
       : null,
   ].filter(Boolean),
   devServer: {
-    publicPath: `${configJs.assetsUrl}/${packageJson.name}/build/client/`,
+    publicPath: `${configJs.assetsUrl}/${packageJson.name}/build/client`,
     proxy: {
-      '/': `${configJs.assetsUrl}/${packageJson.name}/build/client/`,
+      '/': `${configJs.assetsUrl}/${packageJson.name}/build/client`,
     },
     // compress: true,
     hot: true,

@@ -8,5 +8,9 @@
     "cookie-parser": "1.4.5",
     "express": "4.17.1",
     "helmet": "3.23.3"
+  },
+  "resolutions": {
+    "node-gyp": "^6.1.0",
+    "node-pre-gyp": "^0.14.0"
   }
 }

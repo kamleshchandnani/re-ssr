@@ -23,5 +23,6 @@ module.exports = {
     __VERSION__: false,
     __CONFIG__: false,
     __IS_BROWSER__: false,
+    UNSPLASH_ACCESS_KEY: false,
   },
 };

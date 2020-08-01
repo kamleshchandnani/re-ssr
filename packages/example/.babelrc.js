@@ -13,7 +13,7 @@ module.exports = {
       {
         corejs: 3,
         helpers: true,
-        regenerator: false,
+        regenerator: true,
       },
     ],
     [
