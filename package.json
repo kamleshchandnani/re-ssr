@@ -1,6 +1,5 @@
 {
-  "name": "re-ssr",
-  "version": "1.0.0",
+  "name": "re-ssr-root",
   "private": true,
   "description": "Server Side Rendering, the better way!",
   "main": "index.js",

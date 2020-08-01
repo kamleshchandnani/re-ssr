@@ -87,7 +87,7 @@ module.exports = {
       '/': `${configJs.assetsUrl}/${packageJson.name}/build/client/`,
     },
     // compress: true,
-    // hot: true,
+    hot: true,
     serveIndex: false,
     port: 9000,
   },
