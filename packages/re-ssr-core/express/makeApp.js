@@ -31,11 +31,6 @@ const makeApp = ({ name, version }) => {
 
   // force trailing slashes with a 301 redirect
   app.use(slashes(true));
-  app.use('*', (req, res) =>
-    res.send({
-      data: 'Simple express app demo',
-    }),
-  );
 
   return app;
 };

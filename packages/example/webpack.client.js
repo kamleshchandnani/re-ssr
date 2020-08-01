@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build/client'),
     filename: isProd ? `js/[name].[chunkhash:8].js` : `js/[name].js`,
-    chunkFilename: isProd ? `js/[name].[chunkhash:8].js` : `js/[name].js`,
+    // chunkFilename: isProd ? `js/[name].[chunkhash:8].js` : `js/[name].js`,
     publicPath: `${configJs.assetsUrl}/${packageJson.name}/build/client/`,
   },
   module: {
@@ -61,14 +61,14 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    moduleIds: isProd ? 'hashed' : 'named',
-    splitChunks: {
-      // include all types of chunks(sync and async) for optimisation
-      chunks: 'all',
-    },
-    runtimeChunk: 'single',
-  },
+  // optimization: {
+  //   moduleIds: isProd ? 'hashed' : 'named',
+  //   splitChunks: {
+  //     // include all types of chunks(sync and async) for optimisation
+  //     chunks: 'all',
+  //   },
+  //   runtimeChunk: 'single',
+  // },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
