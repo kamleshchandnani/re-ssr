@@ -6,6 +6,7 @@ import chalk from 'chalk';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 // eslint-disable-next-line import/extensions
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import packageJson from '../package.json';
 import Wrapper from './bootstrap/Wrapper/Wrapper';
 
@@ -17,15 +18,20 @@ app.use(compression());
 app.use(`/${packageJson.name}/build/client`, express.static('build/client'));
 
 app.get('*', (req, res) => {
+  const sheet = new ServerStyleSheet();
   const markup = renderToString(
-    <StaticRouter location={req.url}>
-      <Wrapper />
-    </StaticRouter>,
+    <StyleSheetManager sheet={sheet.instance}>
+      <StaticRouter location={req.url}>
+        <Wrapper />
+      </StaticRouter>
+    </StyleSheetManager>,
   );
+  const styles = sheet.getStyleTags();
   res.send(`
     <!DOCTYPE html>
     <html>
       <head>
+      ${styles}
         <title>Resplash</title>
       </head>
       <body>
