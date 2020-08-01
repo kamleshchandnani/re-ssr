@@ -74,6 +74,10 @@ module.exports = {
     new webpack.DefinePlugin({
       __IS_BROWSER__: 'true',
       UNSPLASH_ACCESS_KEY: JSON.stringify(process.env.UNSPLASH_ACCESS_KEY),
+      __STAGE__: JSON.stringify(process.env.STAGE),
+      __VERSION__: JSON.stringify(packageJson.version),
+      __NAME__: JSON.stringify(packageJson.name),
+      __CONFIG__: JSON.stringify(configJs),
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

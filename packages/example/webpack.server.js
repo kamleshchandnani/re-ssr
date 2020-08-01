@@ -5,6 +5,8 @@ const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const babelConfig = require('./.babelrc.js');
+const configJs = require('./config.js')[process.env.STAGE];
+const packageJson = require('./package.json');
 
 const isProd = process.env.STAGE !== 'development';
 
@@ -65,6 +67,10 @@ module.exports = {
     new webpack.DefinePlugin({
       __IS_BROWSER__: 'false',
       UNSPLASH_ACCESS_KEY: JSON.stringify(process.env.UNSPLASH_ACCESS_KEY),
+      __STAGE__: JSON.stringify(process.env.STAGE),
+      __VERSION__: JSON.stringify(packageJson.version),
+      __NAME__: JSON.stringify(packageJson.name),
+      __CONFIG__: JSON.stringify(configJs),
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

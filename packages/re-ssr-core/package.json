@@ -12,5 +12,11 @@
   "resolutions": {
     "node-gyp": "^6.1.0",
     "node-pre-gyp": "^0.14.0"
+  },
+  "devDependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-router-dom": "5.2.0",
+    "styled-components": "5.1.1"
   }
 }

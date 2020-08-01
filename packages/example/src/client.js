@@ -1,11 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { renderApp } from 're-ssr/renderApp';
 import Wrapper from './bootstrap/Wrapper/Wrapper';
 
-ReactDOM.hydrate(
-  <BrowserRouter>
-    <Wrapper />
-  </BrowserRouter>,
-  document.getElementById('app'),
-);
+renderApp({ App: Wrapper });

@@ -21,6 +21,7 @@ module.exports = {
   globals: {
     __STAGE__: false,
     __VERSION__: false,
+    __NAME__: false,
     __CONFIG__: false,
     __IS_BROWSER__: false,
     UNSPLASH_ACCESS_KEY: false,
