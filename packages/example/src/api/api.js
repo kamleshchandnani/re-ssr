@@ -1,4 +1,5 @@
 import Unsplash from 'unsplash-js';
+require('isomorphic-fetch');
 
 export const getPhotos = async (keyword) => {
   const unsplash = new Unsplash({ accessKey: UNSPLASH_ACCESS_KEY });

@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import serialize from 'serialize-javascript';
 
-const renderApp = ({ providers = {}, App, req }) => {
+const renderApp = ({ App, req, initialData = {} }) => {
   if (__IS_BROWSER__) {
     ReactDOM.hydrate(
       <BrowserRouter>
@@ -12,6 +13,7 @@ const renderApp = ({ providers = {}, App, req }) => {
       </BrowserRouter>,
       document.getElementById('app'),
     );
+    return null;
   } else {
     const sheet = new ServerStyleSheet();
     const markup = renderToString(
@@ -28,6 +30,7 @@ const renderApp = ({ providers = {}, App, req }) => {
       <head>
       ${styles}
         <title>Resplash</title>
+        <script>window.__INITIAL_DATA__=${serialize(initialData)}</script>
       </head>
       <body>
         <div id="app">${markup}</div>

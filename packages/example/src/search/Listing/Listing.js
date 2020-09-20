@@ -16,7 +16,11 @@ const Listing = () => {
   };
 
   React.useEffect(() => {
-    fetchPhotos(search);
+    if (window?.__INITIAL_DATA__?.photos) {
+      setPhotos(window.__INITIAL_DATA__.photos);
+    } else {
+      fetchPhotos(search);
+    }
   }, [search]);
 
   return (
@@ -37,6 +41,12 @@ const Listing = () => {
       </Grid>
     </Stack>
   );
+};
+
+Listing.getInitialData = async (req) => {
+  const { keyword } = req.query;
+  const response = await getPhotos(keyword);
+  return { photos: response.results };
 };
 
 export default Listing;
