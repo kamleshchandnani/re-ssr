@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import http from 'http';
 import express, { makeApp } from 're-ssr/express';
 import compression from 'compression';
@@ -13,6 +14,8 @@ const configJs = require('../config.js')[process.env.STAGE];
 
 const app = makeApp({ name: packageJson.name, version: packageJson.version });
 app.use(compression());
+
+app.get('/service-worker.js', express.static('build/client'));
 
 app.use(`/${packageJson.name}/build/client`, express.static('build/client'));
 

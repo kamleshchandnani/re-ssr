@@ -6,6 +6,10 @@
     "start": "run-s development:*",
     "development:build": "STAGE=development webpack --config webpack.server.js",
     "development:serve": "STAGE=development run-p watch:client watch:server",
+    "production:build": "STAGE=production run-p production:build:*",
+    "production:build:client": "STAGE=production webpack --config webpack.client.js",
+    "production:build:server": "STAGE=production webpack --config webpack.server.js",
+    "production:serve": "STAGE=production nodemon ./build/server/server.js",
     "watch:client": "STAGE=development webpack-dev-server --config webpack.client.js",
     "watch:server": "STAGE=development nodemon ./build/server/server.js"
   },
@@ -33,6 +37,7 @@
     "chalk": "4.1.0",
     "clean-webpack-plugin": "3.0.0",
     "compression": "1.7.4",
+    "copy-webpack-plugin": "6.2.1",
     "css-loader": "4.2.0",
     "dotenv": "8.2.0",
     "html-webpack-plugin": "4.3.0",
@@ -44,7 +49,12 @@
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0",
     "webpack-node-externals": "2.5.0",
-    "webpackbar": "4.0.0"
+    "webpackbar": "4.0.0",
+    "workbox-core": "5.1.4",
+    "workbox-precaching": "5.1.4",
+    "workbox-routing": "5.1.4",
+    "workbox-strategies": "5.1.4",
+    "workbox-webpack-plugin": "5.1.4"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.11.0",
@@ -56,7 +66,8 @@
     "react-router-dom": "5.2.0",
     "react-ui": "1.0.0-beta.26",
     "styled-components": "5.1.1",
-    "unsplash-js": "6.0.0"
+    "unsplash-js": "6.0.0",
+    "workbox-window": "5.1.4"
   },
   "resolutions": {
     "node-gyp": "^6.1.0",

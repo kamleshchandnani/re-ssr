@@ -6,8 +6,10 @@ module.exports = {
   },
   staging: {
     port: 9001,
+    assetsUrl: 'http://localhost:9001',
   },
   production: {
     port: 9001,
+    assetsUrl: 'http://localhost:9001',
   },
 };
