@@ -1,7 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-const slashes = require('connect-slashes');
 
 const makeApp = ({ name, version }) => {
   const app = express();
@@ -30,7 +29,6 @@ const makeApp = ({ name, version }) => {
   );
 
   // force trailing slashes with a 301 redirect
-  app.use(slashes(true));
 
   return app;
 };

@@ -3,7 +3,9 @@ const path = require('path');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
 const configJs = require('./config.js')[process.env.STAGE];
 const packageJson = require('./package.json');
@@ -71,6 +73,12 @@ module.exports = {
   // },
   plugins: [
     new CleanWebpackPlugin(),
+    new InjectManifest({
+      swSrc: path.resolve(__dirname, 'serviceWorker.js'),
+      swDest: 'service-worker.js',
+      exclude: [/\.map$/, /\.json$/],
+      maximumFileSizeToCacheInBytes: '3000000',
+    }),
     new webpack.DefinePlugin({
       __IS_BROWSER__: 'true',
       UNSPLASH_ACCESS_KEY: JSON.stringify(process.env.UNSPLASH_ACCESS_KEY),
@@ -79,6 +87,7 @@ module.exports = {
       __NAME__: JSON.stringify(packageJson.name),
       __CONFIG__: JSON.stringify(configJs),
     }),
+    new CopyWebpackPlugin({ patterns: [{ from: './src/offline/offline.html' }] }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
@@ -90,13 +99,12 @@ module.exports = {
       : null,
   ].filter(Boolean),
   devServer: {
-    publicPath: `${configJs.assetsUrl}/${packageJson.name}/build/client`,
-    proxy: {
-      '/': `${configJs.assetsUrl}/${packageJson.name}/build/client`,
-    },
-    // compress: true,
+    writeToDisk: true,
     hot: true,
     serveIndex: false,
     port: 9000,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
 };

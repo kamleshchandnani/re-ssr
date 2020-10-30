@@ -6,8 +6,10 @@ module.exports = {
   },
   staging: {
     port: 9001,
+    assetsUrl: '',
   },
   production: {
     port: 9001,
+    assetsUrl: '',
   },
 };
