@@ -36,6 +36,10 @@ const renderApp = ({ App, req, initialData = {} }) => {
         <div id="app">${markup}</div>
       </body>
       <script src="${__CONFIG__.assetsUrl}/${__NAME__}/build/client/js/main.js" defer></script>
+      <script src="${__CONFIG__.assetsUrl}/${__NAME__}/build/client/js/runtime.js" defer></script>
+      <script src="${
+        __CONFIG__.assetsUrl
+      }/${__NAME__}/build/client/js/vendors~main.js" defer></script>
     </html>
     `;
     return html;
